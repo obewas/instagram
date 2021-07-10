@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-
+import cloudinary
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -122,11 +122,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'hs8k1napd',
-    'API_KEY': '711616426271462',
-    'API_SECRET': 'jSwVe26AvQnapdwGEBcFABvfxYA',
-}
+cloudinary.config(
+    cloud_name = 'hs8k1napd',
+    api_key= '711616426271462',
+    api_secret ='jSwVe26AvQnapdwGEBcFABvfxYA',
+)
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
