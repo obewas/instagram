@@ -1,6 +1,9 @@
 from django.urls import path
-from .views import index, upload
+from .views import home, upload, UserRegisterView, profile
+
 urlpatterns = [
-    path('', index),
-    path('upload/', upload, name='upload')
+    path('', home, name='home'),
+    path('upload/', upload, name='upload'),
+    path('profile', profile, name='profile'),
+    path('register/', UserRegisterView.as_view(), name="register"),
 ]

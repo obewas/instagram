@@ -1,0 +1,12 @@
+{% extends "registration/base.html" %}
+
+{% block title %}Create an Account{% endblock %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <form method="POST" class="form-group">
+	{% csrf_token %}
+	 {% bootstrap_form form %}
+	<button type="submit" class="btn btn-success">Register</button>
+    </form>
+{% endblock %}
