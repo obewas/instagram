@@ -41,15 +41,11 @@ def upload(request):
 
 
 def home(request):
-  profile = Profile.objects.all()
-  context = {
-    'profile':profile
-
-  }
-  return render(request, 'home.html', context)
+  
+  return render(request, 'login.html')
 
 
 class UserRegisterView(generic.CreateView):
   form_class = SignUpForm
   template_name = 'registration/registration_form.html'
-  success_url = reverse_lazy('login')
+  success_url = reverse_lazy('/')
