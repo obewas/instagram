@@ -21,7 +21,8 @@ class SignUpForm(UserCreationForm):
 		model = User
 		fields = ['username', 'first_name','last_name', 'email', 'password1', 'password2' ]
 
-class CreateNewProfile(forms.ModelForm):
+class NewProfileForm(forms.ModelForm):
 	class Meta:
 		model = Profile
+		exclude = ['profile_image']
 		fields = '__all__'
