@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.mail import send_mail
-from django_project import helpers
+from django.contrib.admin import helpers
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http.response import HttpResponseRedirect
@@ -92,3 +92,14 @@ def register(request):
        f = CustomUserCreationForm()
 
     return render(request, 'registration/register.html', {'form': f})
+
+def activate_account(request):
+    key = request.GET['key']
+    if not  key:
+        raise HttP404()
+    r = get_object_or_404(Profile, activation_key=key, email_validated=False)
+    r.user.is_active = True
+    r.user.save()
+    r.email_validated = True
+    r.save()
+    return render(render, 'activated.html')
