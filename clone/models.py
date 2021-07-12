@@ -37,17 +37,14 @@ class Profile(models.Model):
         return str(self.user)
 
 
-
-
-class Image(models.Model):
-    name = models.CharField(max_length=100, default='image')
+class ProfileImages(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='media', null=True)
+    image_name = models.CharField(max_length=100)
     caption = models.TextField()
-    profile = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     likes = models.BooleanField(default=True)
     comments = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
-
-    
+        return str(self.image_name)

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'clone',
     'bootstrap4',
     'cloudinary',
+
 ]
 
 MIDDLEWARE = [

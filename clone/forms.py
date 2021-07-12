@@ -1,7 +1,7 @@
 from django.contrib.auth import login
 from django.db.models import fields
 from django.forms import ModelForm      
-from .models import Photo, Profile
+from .models import Photo, Profile, ProfileImages
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -28,3 +28,9 @@ class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = ['profile_image','profession', 'phone', 'mobile', 'address']
+
+class ImageCreationForm:
+	class Meta:
+		model = ProfileImages
+		fields = '__all__'
+
