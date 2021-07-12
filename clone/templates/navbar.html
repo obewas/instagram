@@ -1,48 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-          <img src="http://placehold.it/150x50?text=Logo" alt="">
-        </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
+<ul class="sidebar-nav">
 
-       {% if user.is_authenticated %}
-
-
-            <li class="nav-item active">
-          <a class="nav-link" href="#">{{ user.get_username }}
-                <span class="sr-only">(current)</span>
-              </a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout
-                <span class="sr-only">(current)</span>
-              </a>
-        </li>
-
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://versions.bulma.io/0.7.0">
+        <img src="https://versions.bulma.io/0.7.0/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+      </a>
+      {% if user.is_authenticated %}
+     <li>User: {{ user.get_username }}</li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
    {% else %}
-      <li class="nav-item active">
-          <a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login
-                <span class="sr-only">(current)</span>
-              </a>
-        </li>
-
-   {% endif %}
-
+     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+   {% endif %} 
+  
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
-      </ul>
     </div>
-  </div>
-</nav>
-
-
+  </nav>
 
    
   </ul>

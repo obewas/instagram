@@ -13,18 +13,14 @@ class Photo(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,
-    related_name = 'profile', null=True)
-    firstName = models.CharField(max_length=100, null=True, blank=True)
-    lastName = models.CharField(max_length=100, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     location = models.CharField(max_length=100, null=True, blank=True)
-    url = models.CharField(max_length=100, null=True, blank=True)
     profile_image = models.ForeignKey(Photo, on_delete=models.CASCADE)
     bio = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.firstName + " " + self.lastName
+        return self.user
 
 
 class Image(models.Model):
