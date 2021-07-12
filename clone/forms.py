@@ -14,14 +14,17 @@ class PhotoForm(ModelForm):
 
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField()
-	first_name = forms.CharField(max_length=100)
-	last_name = forms.CharField(max_length=100)
 
 	class Meta:
 		model = User
-		fields = ['username', 'first_name','last_name', 'email', 'password1', 'password2' ]
+		fields = ['username', 'email', 'password1', 'password2' ]
 
-class CreateNewProfile(forms.ModelForm):
+class UserUpdateForm(forms.ModelForm):
+	class Meta:
+		model = User
+		fields = ['username','email']
+
+class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		fields = '__all__'
+		fields = ['profile_image','profession', 'phone', 'mobile', 'address']
