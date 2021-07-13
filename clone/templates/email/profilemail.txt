@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the best profile app. Explore the contents and link with your friends.

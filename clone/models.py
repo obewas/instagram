@@ -34,9 +34,11 @@ class ProfileImages(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
     location = models.CharField(max_length=100, null=True, blank=True)
     profile_image = models.ForeignKey(Photo, on_delete=models.CASCADE, null=True)
     bio = models.TextField()
+    email = models.EmailField(null=True)
     user_photos = models.ForeignKey(ProfileImages, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     profession = models.CharField(max_length=100, null=True, blank=True)

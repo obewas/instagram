@@ -14,13 +14,15 @@ from .models import Photo, Profile, Image, ProfileImages
 from .forms import SignUpForm, PhotoForm, UserUpdateForm, ProfileUpdateForm, ImageCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from .email import send_welcome_email
 # Create your views here.
 
-
+# uploading photo to the app
 def upload(request):
   context = dict( backend_form = PhotoForm())
 
   if request.method == 'POST':
+
     form = PhotoForm(request.POST, request.FILES)
     context['posted'] = form.instance
     if form.is_valid():
@@ -28,6 +30,7 @@ def upload(request):
         return redirect('profile')
   return render(request, 'upload.html', context)
 
+#for displaying profile page to the authenticated user
 @login_required
 def home(request):
 
@@ -38,19 +41,24 @@ def home(request):
   }
   return render(request, 'home.html', context)
 
-
+# for registering a new user
 def register(request):
+  name = Profile.name
+  email = Profile.email
   if request.method == 'POST':
     form = SignUpForm(request.POST)
     if form.is_valid():
       form.save()
-      username = form.cleaned_data.get('username')
+  
       messages.success(request, f'Your account has been created!')
+      recipient = Profile(name=name, email=email)
+      recipient.save()
+      send_welcome_email(name,email)
       return redirect('profile')
   else:
     form = SignUpForm()
   return render(request, 'registration/registration_form.html', {'form':form})
-
+# for creating a new user profile
 @login_required
 def profile(request):
     Profile.objects.get_or_create(user=request.user)
@@ -76,31 +84,12 @@ def profile(request):
     return render(request, 'profile.html', context)
 
 #Image creation, update, deletion, display
-def create_image(request):
-    if request.method == "POST":
-        form = ImageCreationForm(request.POST)
-        if form.is_valid():
-          image = form.cleaned_data['image']
-          image_name = form.cleaned_data['image_name']
-          caption = form.cleaned_data['caption']
-          profile = form.cleaned_data['profile']
-          likes = form.cleaned_data['likes']
-          comment = form.cleaned_data['comment']
-          form.save()
-            # <process form cleaned data>
-          return HttpResponseRedirect('/home/')
-    else:
-        form = ImageCreationForm()
-
-    return render(request, 'image/.html', {'form': form})
 
 class ImageListView(ListView):
   model = ProfileImages
   template_name = 'image/profileimages.html'
   context_object_name = 'profileimages'
   ordering = ['-created_at']
-
-
 
 
 class ImageCreateView(LoginRequiredMixin ,CreateView):
