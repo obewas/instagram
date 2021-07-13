@@ -1,3 +1,4 @@
+from PIL import Image
 from django.contrib.auth import login
 from django.db.models import fields
 from django.forms import ModelForm      
@@ -32,5 +33,5 @@ class ProfileUpdateForm(forms.ModelForm):
 class ImageCreationForm:
 	class Meta:
 		model = ProfileImages
-		fields = '__all__'
+		fields = ['image', 'image_name']
 
