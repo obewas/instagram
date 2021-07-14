@@ -10,12 +10,11 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from cloudinary.forms import cl_init_js_callbacks
 from django.views import generic      
-from .models import Photo, Profile, Image, ProfileImages, Stream, Post
+from .models import Photo, Profile, Image, ProfileImages
 from .forms import SignUpForm, PhotoForm, UserUpdateForm, ProfileUpdateForm, ImageCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from .email import send_welcome_email
-from django.template import loader
 # Create your views here.
 
 # uploading photo to the app
@@ -102,19 +101,4 @@ class ImageCreateView(LoginRequiredMixin ,CreateView):
   def form_valid(self, form):
       form.instance.created_by = self.request.user
       return super().form_valid(form)
-
-@login_required
-def index(request):
-  user = request.user
-  posts = Stream.objects.filter(user=user)
-  group_ids = []
-  for post in posts:
-    group_ids.append(post.post_id)
-  post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
-  template = loader.get_template('index.html')
-  context = {
-    'post_items':post_items
-  }
-
-  return HttpResponse(template.render(context, request))
   

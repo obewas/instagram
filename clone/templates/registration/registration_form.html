@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="content-section">
-    <form method="POST" class="form-group" action="{% url 'profile' %}">
+    <form method="POST" class="form-group">
 	{% csrf_token %}
 		<fieldset class="form-group">
 			<legend class="border-bottom mb-4">Join Today</legend>
@@ -22,5 +22,4 @@
 		</small>
 	</div>
 	</div>
-	 
 {% endblock %}
