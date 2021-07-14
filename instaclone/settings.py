@@ -145,6 +145,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 cloudinary.config(
     cloud_name = 'hs8k1napd',
     api_key= '711616426271462',
