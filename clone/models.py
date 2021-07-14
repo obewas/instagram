@@ -4,12 +4,15 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.db.models.fields import AutoField, PositiveIntegerRelDbTypeMixin
 from django.db.models.signals import post_delete, post_save
+from django.urls import reverse
+from django.utils.text import slugify
+
 # Create your models here.
 class Photo(models.Model):
     name= models.CharField(max_length=100)
     image = CloudinaryField('image')
     uploaded = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self):
         return self.name
     #def save(self):
@@ -53,9 +56,22 @@ class Profile(models.Model):
 class Tag(models.Model):
     title = models.CharField(max_length=50, verbose_name='Tag')
     slug = models.SlugField(null=False, unique=True)
+    
+    class Meta:
+        verbose_name = 'Tag'
+        verbose_name_plural = 'Tags'
+
+
+    #def get_absolute_url(self):
+      #  return reverse('tags', args=[self.slug])
+
 
     def __str__(self):
         return self.title 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
 
 class Post(models.Model):
     picture = models.ForeignKey(Photo, on_delete=models.CASCADE)

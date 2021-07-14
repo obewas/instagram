@@ -21,7 +21,7 @@ urlpatterns = [
     path('profile', views.profile, name='profile'),
     path('create/', views.ImageCreateView.as_view(), name='create'),
     path('imagelist/',views.ImageListView.as_view(), name='image_list'),
-    
+    path('index', views.index, name='index')
    
 ]
    
