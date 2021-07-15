@@ -10,9 +10,10 @@
 
     <div class="container">
         <div class="main-body">
-
+          
               <!-- Breadcrumb -->
               <nav aria-label="breadcrumb" class="main-breadcrumb">
+               
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                   <li class="breadcrumb-item"><a href="javascript:void(0)">{{user.username }}</a></li>
@@ -21,6 +22,7 @@
                   <li class="breadcrumb-item active"><a href="{% url 'profile' %}">Profile Update</a></li>
                   {% endif %}
                 </ol>
+                
               </nav>
               <!-- /Breadcrumb -->
 
@@ -116,7 +118,7 @@
                       <hr>
                       <div class="row">
                         <div class="col-sm-12">
-                          <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+                          <a class="btn btn-info " target="__blank" href="{% url 'profile' %}">Edit</a>
                         </div>
                       </div>
                     </div>

@@ -28,7 +28,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		fields = ['profile_image','profession', 'phone', 'mobile', 'address', 'location']
+		fields = ['profile_image','profession', 'phone', 'mobile', 'address', 'location', 'country']
 
 class ImageCreationForm:
 	class Meta:
