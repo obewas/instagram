@@ -13,4 +13,16 @@
       <input type="submit" value="Upload">
     </form>
   </div>  
+
+
+  <div class="container">
+    <form class="form" method="POST" action="{% url 'upload' %}" enctype="multipart/form-data">
+      <div class="file-upload-wrapper" data-text="Select your file!">
+        <label for="file-upload-field"></label>
+        <input name="file-upload-field" type="file" class="file-upload-field" value="Upload profile photo">
+      </div>
+    </form>
+  </div>
+
+
 {% endblock %}

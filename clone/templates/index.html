@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{{user}}
+
+
+{% for post_item in post_items %}
+
+<div>
+    <img src="{{ post_item.picture.image.url}}" alt="">
+</div>
+
+{{ post_items.tags }}
+{% endfor %}
+
+{% endblock %}

@@ -72,8 +72,11 @@ class Follow(models.Model):
     follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
     following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
 
+    def __str__(self):
+        return self.follower
+
 class Stream(models.Model):
-    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stream_following')
+    following = models.ForeignKey(Follow, on_delete=models.CASCADE, related_name='stream_following')
     post = models.ForeignKey(User, on_delete=models.CASCADE, related_name='userpost')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)

@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from cloudinary.forms import cl_init_js_callbacks
 from django.views import generic      
-from .models import Photo, Profile, Image, ProfileImages, Stream, Post
+from .models import Follow, Photo, Profile, Image, ProfileImages, Stream, Post
 from .forms import SignUpForm, PhotoForm, UserUpdateForm, ProfileUpdateForm, ImageCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -34,10 +34,11 @@ def upload(request):
 #for displaying profile page to the authenticated user
 @login_required
 def home(request):
-
+  follow = Follow.objects.all()
+  post = Post.objects.all()
   profile = Profile.objects.all()
   context = {
-    'profile':profile
+    'profile':profile, 'post':post, 'follow':follow,
 
   }
   return render(request, 'home.html', context)
@@ -49,12 +50,12 @@ def register(request):
   if request.method == 'POST':
     form = SignUpForm(request.POST)
     if form.is_valid():
-      form.save()
   
       messages.success(request, f'Your account has been created!')
       recipient = Profile(name=name, email=email)
       recipient.save()
       send_welcome_email(name,email)
+      form.save()
       return redirect('profile')
   else:
     form = SignUpForm()
