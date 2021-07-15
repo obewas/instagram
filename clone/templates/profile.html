@@ -4,7 +4,16 @@
 
 
 {% block content %}
-
+<nav aria-label="breadcrumb" class="main-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="javascript:void(0)">{{user.username }}</a></li>
+      {% if user.is_authenticated %}
+      <li class="breadcrumb-item active"><a href="{% url 'logout' %}">Logout</a></li>
+      <li class="breadcrumb-item active"><a href="{% url 'profile' %}">Profile Update</a></li>
+      {% endif %}
+    </ol>
+  </nav>
 <div class="content-section">
 
     <div class="media">

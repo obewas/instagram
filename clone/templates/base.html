@@ -15,6 +15,7 @@
     {% block styles %}
       {% bootstrap_css %}
       <link rel="stylesheet"  href="{% static 'css/main.css' %}" type="text/css" media="screen"/>
+    
     {% endblock %}
     <title>Instagram</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +30,7 @@
 
     {% block scripts %}
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="main.js"></script>
+      <script src="{% static 'js/upload.js' %}"></script>
       {% bootstrap_javascript %}
     {% endblock %}
 
