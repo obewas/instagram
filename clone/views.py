@@ -29,7 +29,7 @@ def upload(request):
     context['posted'] = form.instance
     if form.is_valid():
         form.save()
-        return redirect('profile')
+        return HttpResponseRedirect('profile/')
   return render(request, 'upload.html', context)
 
 #for displaying profile page to the authenticated user
@@ -71,7 +71,7 @@ def profile(request):
         p_form = ProfileUpdateForm(request.POST,
                                    request.FILES,
                                    instance=request.user.profile)
-        if u_form.is_valid() and u_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been updated!')

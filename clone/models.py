@@ -22,7 +22,7 @@ class Photo(models.Model):
        #     img.save(self.image.path)
 class ProfileImages(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = CloudinaryField('image', null=True)
+    image = models.ForeignKey(Photo,on_delete=models.CASCADE, null=True)
     image_name = models.CharField(max_length=100)
     caption = models.TextField()
     likes = models.BooleanField(default=True)
@@ -36,7 +36,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=100, null=True, blank=True)
     location = models.CharField(max_length=100, null=True, blank=True)
-    profile_image = models.ForeignKey(Photo, on_delete=models.CASCADE, null=True)
+    profile_image = models.ForeignKey(Photo,on_delete=models.CASCADE, null=True)
     bio = models.TextField()
     email = models.EmailField(null=True)
     user_photos = models.ForeignKey(ProfileImages, on_delete=models.CASCADE, null=True)
