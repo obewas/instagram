@@ -6,24 +6,24 @@
 
 {% block content %}
 
+     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 
-
-    <div class="container">
+    <div class="container" style="padding: auto;">
         <div class="main-body">
           
               <!-- Breadcrumb -->
               <nav aria-label="breadcrumb" class="main-breadcrumb">
                
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                  <li class="breadcrumb-item"><a href="javascript:void(0)">{{user.username }}</a></li>
+                <div class="btn-group">
+                  <button><a href="{% url 'home' %}">Home</a></button>
+                  <button><a href="javascript:void(0)">{{user.username }}</a></button>
                   {% if user.is_authenticated %}
-                  <li class="breadcrumb-item active"><a href="{% url 'logout' %}">Logout</a></li>
-                  <li class="breadcrumb-item active"><a href="{% url 'profile' %}">Profile Update</a></li>
-                  <li class="breadcrumb-item active"><a href="{% url 'upload' %}">Upload Photo</a></li>
-                  <li class="breadcrumb-item active"><a href="">Upload Photo</a></li>
+                  <button><a href="{% url 'logout' %}">Logout</a></button>
+                  <button><a href="{% url 'profile' %}">Profile Update</a></button>
+                  <button><a href="{% url 'upload' %}">Upload Photo</a></button>
+
                   {% endif %}
-                </ol>
+                </div>
                 
               </nav>
               <!-- /Breadcrumb -->
