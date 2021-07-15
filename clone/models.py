@@ -59,7 +59,7 @@ class Tag(models.Model):
         return self.title 
 
 class Post(models.Model):
-    picture = models.ForeignKey(Photo, on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to='media', null=True)
     caption = models.TextField(max_length=1500, verbose_name='Caption')
     posted = models.DateTimeField(auto_now_add=True)
     tags =models.ManyToManyField(Tag, related_name='tags')
