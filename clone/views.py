@@ -19,6 +19,7 @@ from django.template import loader
 # Create your views here.
 
 # uploading photo to the app
+@login_required
 def upload(request):
   context = dict( backend_form = PhotoForm())
 
@@ -87,7 +88,7 @@ def profile(request):
 
 #Image creation, update, deletion, display
 
-class ImageListView(ListView):
+class ImageListView(LoginRequiredMixin, ListView):
   model = ProfileImages
   template_name = 'image/profileimages.html'
   context_object_name = 'profileimages'
@@ -103,7 +104,7 @@ class ImageCreateView(LoginRequiredMixin ,CreateView):
   def form_valid(self, form):
       form.instance.created_by = self.request.user
       return super().form_valid(form)
-
+@login_required
 def index(request):
   user = request.user  
   posts = Stream.objects.filter(user=user)
@@ -111,6 +112,7 @@ def index(request):
   group_ids = []
   for post in posts:
     group_ids.append(post.post_id)
+    print(group_ids)
   post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
   template = loader.get_template('index.html')
   context = {

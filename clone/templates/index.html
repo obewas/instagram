@@ -2,16 +2,23 @@
 {% load static %}
 
 {% block content %}
-{{user}}
+<div>
+    <h5 style="color:green;">{{user}}</h5>
 
-
+</div>
+<div>
+    <h5 style="color:red;">{{user.username}}</h5>
+</div>
 {% for post_item in post_items %}
 
 <div>
-    <img src="{{ post_item.picture.image.url}}" alt="">
+    <p>{{post_item.user.username}}</p>
+</div>
+<div>
+    <img src="{{post_item.picture.image.url}}">
 </div>
 
-{{ post_items.tags }}
 {% endfor %}
+
 
 {% endblock %}
