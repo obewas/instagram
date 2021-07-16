@@ -41,20 +41,13 @@
     <!-- Font awesome link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
 </head>
-<body>
-  <nav aria-label="breadcrumb" class="main-breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-      <li class="breadcrumb-item"><a href="javascript:void(0)">{{user.username }}</a></li>
-      {% if user.is_authenticated %}
-      <li class="breadcrumb-item active"><a href="{% url 'logout' %}">Logout</a></li>
-      <li class="breadcrumb-item active"><a href="{% url 'profile' %}">Profile Update</a></li>
-      {% endif %}
-    </ol>
-  </nav>
+<body style="background-color: lightblue;">
+ 
     <div id="wrapper">
       <div class="container">
-        <div class="phone-app-demo"></div>
+        <div class="phone-app-demo">
+          <img src="{% static 'media/instalogo.png'%}" style="width: 250px; height: 250px; margin-top: 100px;">
+        </div>
         <div class="form-data">
           <form action="/accounts/login/" method="POST">
            
@@ -62,9 +55,13 @@
               <h1>Instagram.</h1>
             </div>
             {% csrf_token %}
-           
+
+            <label for="username">{{form.username.label}}</label>
             {{form.username}}
+             <label for="password">{{form.password.label}}</label>
             {{form.password}}
+
+           
           <div class="sign-in">
            <input type="submit" value="submit">
           </div>

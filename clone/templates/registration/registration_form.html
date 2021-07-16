@@ -2,30 +2,91 @@
 
 {% block title %}Create an Account{% endblock %}
 {% load bootstrap4 %}
-
+{% load static %}
 {% block content %}
-<div class="container">
-<div class="content-section">
-    <form method="POST" class="form-group">
-	{% csrf_token %}
-		<fieldset class="form-group">
-			<legend class="border-bottom mb-4">Join Today</legend>
-			{% bootstrap_form form %}
-		</fieldset>
-	 <div class="form-group">
-		 <button type="submit" class="btn btn-outline-info">Register</button>
-	 </div>
 
-    </form>
-	<div class="border-top pt-3">
-		<small class="text-muted">
-			Already have an Account? <a class="ml-2" href="{% url 'login'%}">Login</a>
-		</small>
-	</div>
-	</div>
-</div>
-<!-- Email -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Instagram Registration Form</title>
+    <!-- External css -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- Font awesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+</head>
+<body style="background-color: lightblue;">
+ 
+    <div id="wrapper">
+      <div class="container">
+        <div class="phone-app-demo">
+          <img src="{% static 'media/instalogo.png'%}" style="width: 250px; height: 250px; margin-top: 100px;">
+        </div>
+        <div class="form-data">
+          <form action="/accounts/login/" method="POST">
+           
+            <div class="logo">
+              <h1>Instagram.</h1>
+            </div>
+            {% csrf_token %}
+
+            <label for="username">{{form.username.label}}</label>
+            {{form.username}}
+            <label for="username">{{form.email.label}}</label>
+            {{form.email}}
+             <label for="password">{{form.password1.label}}</label>
+            {{form.password1}}
+             <label for="password">{{form.password2.label}}</label>
+            {{form.password2}}
+           
+          <div class="sign-in">
+           <input type="submit" value="Register">
+          </div>
+            <span class="has-separator">Or</span>
+            <a href="#" class="facebook-login">
+              <i class="fab fa-facebook"></i> Register with Facebook
+            </a>
+            
+          </form>
+          <div class="sign-up">
+            Already have an account? <a href="{% url 'login' %}">Sign In</a>
+          </div>
+          <div class="get-the-app">
+            <span>Get the app</span>
+            <div class="badge">
+              <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png" alt="android App">
+              <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" alt="ios app">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="container">
+          <nav class="footer-nav">
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Support</a></li>
+              <li><a href="#">Jobs</a></li>
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Profiles</a></li>
+              <li><a href="#">Languages</a></li>
+            </ul>
+          </nav>
+          <div class="copyright-notice">
+            &copy; 2019 Complaints
+          </div>
+        </div>
+      </footer>
+    </div>
+</body>
+</html>
+{% endblock %}
 
   
-{% endblock %}
+
 
