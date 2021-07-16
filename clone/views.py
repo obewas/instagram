@@ -51,8 +51,8 @@ def register(request):
   if request.method == 'POST':
     form = SignUpForm(request.POST)
     if form.is_valid():
-  
-      messages.success(request, f'Your account has been created!')
+      
+      messages.success(request, f'Your account has been created successfully!')
       recipient = Profile(name=name, email=email)
       recipient.save()
       send_welcome_email(name,email)
@@ -74,7 +74,7 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
+            messages.success(request, f'Your account has been updated successfully!')
             return redirect('/')
     else:
         u_form = UserUpdateForm(instance=request.user)
